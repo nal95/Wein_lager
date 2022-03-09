@@ -1,0 +1,8 @@
+## env file
+.env
+## node file
+/node_modules
+##for testing
+examples.txt
+## contract address
+tokens.js

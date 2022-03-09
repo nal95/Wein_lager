@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.88.1">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <title> Weinlager </title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="dashboard.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"
+    integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+
+
+
+
+  <!-- Custom styles for this template -->
+</head>
+
+<body>
+
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="https://www.hiqs.de" target="_blank" rel="noopener noreferrer">hiqs GmbH </a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-nav">
+      <div class="nav-item text-nowrap">
+        <a id="btn-logout" class="nav-link px-3" href="#">Sign out</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a id="get-balances-link" class="nav-link">
+                <span data-feather="dollar-sign" class="text-success"></span>
+                <label>Balance</label>
+                <div id="balance">
+                </div>
+
+              </a>
+            </li>
+            </li>
+            <li class="nav-item">
+              <a id="get-transactions-link" class="btn btn-link">
+                <span data-feather="file" class="text-warning"></span>
+                Transactions
+              </a>
+            </li>
+            <li class="nav-item">
+              <a id="get-nfts-link" class="btn btn-link">
+                <span data-feather="inbox" class="text-secondary"></span>
+                Check Bottle in/out
+              </a>
+            </li>
+            <li class="nav-item">
+              <a id="get-dara-link" class="nav-link">
+                <span data-feather="package" class="text-danger"></span>
+                <label for="button">WeineNFT</label>
+                <button class="btn btn-link" onclick="window.location.href='mint.html';">Mint</button>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a id="get-dara-link" class="nav-link">
+                <span data-feather="database" class="text-info"></span>
+                <label for="button">Store Data</label>
+                <button class="btn btn-link" onclick="window.location.href='dataStorage.html';">Storage</button>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div
+          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <div>
+            <span data-feather="archive">registred a new lager</span>
+            <input id="lagerId-input" type="text" class="form-control" placeholder="lager ID please" aria-label="URL"
+              aria-describedby="basic-addon1" required>
+            <input id="location-input" type="text" class="form-control" placeholder="location the lager please"
+              aria-label="URL" aria-describedby="basic-addon1" required>
+            <button id="storage-lager" type="submit" class="btn btn-info" onclick="newlager();"> save Lager </button>
+          </div>
+          <div>
+            <span data-feather="anchor"></span>
+            <input id="lager-input" type="text" class="form-control" placeholder="lager ID please" aria-label="URL"
+              aria-describedby="basic-addon1">
+            <input id="sensorId-input" type="text" class="form-control" placeholder="sensor ID please" aria-label="URL"
+              aria-describedby="basic-addon1">
+            <input id="name-input" type="text" class="form-control" placeholder="name the sensor please"
+              aria-label="URL" aria-describedby="basic-addon1">
+            <button id="storage-sensor" type="submit" class="btn btn-info" onclick="newsensor();"> save Sensor </button>
+          </div>
+        </div>
+        <h2>Transactions</h2>
+        <div id="tableOfTransactions" class="table-responsive">
+        </div>
+      </main>
+    </div>
+  </div>
+
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+    crossorigin="anonymous"></script>
+  <script src="dashboard.js"></script>
+
+  <script type="text/javascript" src="lagerABI.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
