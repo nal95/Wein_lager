@@ -32,7 +32,7 @@ contract Storages is Ownable {
     mapping(uint256 => mapping(string => bool)) public exist;
 
     event hashStorage(uint256 time, string dataHash, uint256 storageId, uint256 sensorId);
-    event changing(uint256 time, uint256 storageId, string bottleName, string bottleUid);
+    event changing(uint256 time, uint256 storageId, string bottleName, string bottleUid, string InOrOut);
 
     ////////////////////////////////////////////////////////////////////////////////Storage/////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -54,7 +54,7 @@ contract Storages is Ownable {
         uidPosition[storageId][bottleUid] = storageContent[storageId].length;
         exist[storageId][bottleUid] = true;
 
-        emit changing(block.timestamp, storageId, wineName, bottleUid );
+        emit changing(block.timestamp, storageId, wineName, bottleUid, "IN" );
     }
 
     function swapPosition( uint256 storageId, string memory bottleUid)
@@ -67,7 +67,7 @@ contract Storages is Ownable {
         bottles memory switcher = storageContent[storageId][upwards - 1];
         storageContent[storageId][descendant] = switcher;
 
-        emit changing (block.timestamp, storageId, switcher.name, switcher.uid);
+        emit changing (block.timestamp, storageId, switcher.name, switcher.uid, "Position");
     }
 
     function checkBottleOut(uint256 storageId, string memory wineName, string memory bottleUid) 
@@ -80,7 +80,7 @@ contract Storages is Ownable {
         uidPosition[storageId][bottleUid] = 0; 
         exist[storageId][bottleUid] = false;
 
-        emit changing (block.timestamp, storageId, wineName, bottleUid);
+        emit changing (block.timestamp, storageId, wineName, bottleUid, "OUT");
     }
 
     function getStorageContent(uint256 storageId)
