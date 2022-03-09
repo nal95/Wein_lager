@@ -35,16 +35,21 @@ contract Bottles is ERC721, Ownable {
         transferFrom(msg.sender, to, id[wineName][bottleUid]);  
     }
 
-    function mintBottle(string memory wineName, string memory bottleUid) 
+    function mintBottle(string memory wineName, string memory bottleUid, string memory bildLink) 
     public virtual onlyOwner  
     {
         require(bottle[wineName][bottleUid] == false, "Bottle: token already minted");
         
         id[wineName][bottleUid] = counter;
         _mint(msg.sender, id[wineName][bottleUid]);
+        _setTokenURI(id[wineName][bottleUid], bildLink);
         bottle[wineName][bottleUid] = true;
         counter ++;
         emit action(id[wineName][bottleUid], wineName, bottleUid); 
+    }
+    
+    function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal {
+        _tokenURIs[tokenId] = _tokenURI;
     }
 
     function existence(string memory wineName, string memory bottleUid) public virtual returns(bool){

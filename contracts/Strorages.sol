@@ -5,12 +5,11 @@ pragma solidity ^0.8.1;
 import "./Bottles.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Storages is Ownable {    
-    //address nftContract;
+contract Storages is Ownable {
+        
     Bottles nftContract;
-    constructor(address _nftContract){//(address _nftContract) //(string memory name, string memory symbol)
+    constructor(address _nftContract){
         nftContract = Bottles(_nftContract);
-        //nftContract  = new Bottles(name,symbol);
     }
 
     struct bottles{
