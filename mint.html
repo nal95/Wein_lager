@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <title> Weinlager / Mint Wines NFTs </title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/checkout/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+
+    <link rel="stylesheet" href="mint.css">
+
+    <!-- Moralis -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <!-- Mumbai WineNfts smart contract abi -->
+
+
+    <!-- Custom styles for this template -->
+</head>
+
+<body class="bg-light">
+
+    <div class="container">
+        <main>
+            <div class="py-5 text-center">
+                <img class="d-block mx-auto mb-4" src="images/apple-icon-precomposed.png" alt="" width="200" height="250">
+                <h2>let us mint wines</h2>
+                <p class="lead">To mint a new WeinNFT bottle token please enter the Uid of the bottle and select the
+                    corresponding wine name.</p>
+                    <a class="py-5 text-center" href="https://true.wine/administration/tags" target="_blank" rel="noopener noreferrer"> True Wine </a>
+            </div>
+
+            <a></a>
+
+            <hr>
+            <div class="mb-3">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input id="SerialNummer" type="text" class="form-control" placeholder="Botlle Uid">
+                    </div>
+                    <div class="input-group mb-3">
+                        <label for="name">Choose your wine name: </label>
+                    </div>
+                    <select id="name" type="file" class="form-control" placeholder="NFT Name">
+                        <option value="An den Achtmorgen">An den Achtmorgen</option>
+                        <option value="Chardonnay 500">Chardonnay 500</option>
+                        <option value="Forster Riesling U500">Forster Riesling U500</option>
+                        <option value="Gutenberg">Gutenberg</option>
+                        <option value="Marmar">Marmar</option>
+                        <option value="Oelberg">Oelberg</option>
+                        <option value="Ozyetra">Ozyetra</option>
+                        <option value="Sauvignon Blanc 500">Sauvignon Blanc 500</option>
+                        <option value="Weißer Burgunder 500">Weißer Burgunder 500</option>
+                    </select>
+                    <br>
+                    <div class="input-group mb-3">
+                        <input class="form-control" type="file" accept="image/png, image/jpeg" id="image" name="bottle image">
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-primary  pull-left" id="btn-mint" type="submit"> Mint </button>
+                </div>
+                <hr>
+                <div class="input-group mb-3" id="resultSpace">
+                </div>
+
+                <div id="tableOfNFTs">
+
+                </div>
+            </div>
+        </main>
+        <p class="mb-1">&copy; 2017–2021 hiqs GmbH</p>
+    </div>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Mumbai WineNfts smart contract abi -->
+    <script type="text/javascript" src="nft_abi.js"></script>
+    <script src="mint.js"></script>
+</body>
+
+</html>
