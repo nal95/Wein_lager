@@ -98,19 +98,15 @@
             <span data-feather="archive">registred a new lager</span>
             <input id="lagerId-input" type="text" class="form-control" placeholder="lager ID please" aria-label="URL"
               aria-describedby="basic-addon1" required>
-            <input id="location-input" type="text" class="form-control" placeholder="location the lager please"
-              aria-label="URL" aria-describedby="basic-addon1" required>
-            <button id="storage-lager" type="submit" class="btn btn-info" onclick="newlager();"> save Lager </button>
+            <button id="storage-lager" type="submit" class="btn btn-info" onclick="newlager();"> set Lager </button>
           </div>
           <div>
-            <span data-feather="anchor"></span>
+            <span data-feather="anchor">registred a new sensor</span>
             <input id="lager-input" type="text" class="form-control" placeholder="lager ID please" aria-label="URL"
               aria-describedby="basic-addon1">
             <input id="sensorId-input" type="text" class="form-control" placeholder="sensor ID please" aria-label="URL"
               aria-describedby="basic-addon1">
-            <input id="name-input" type="text" class="form-control" placeholder="name the sensor please"
-              aria-label="URL" aria-describedby="basic-addon1">
-            <button id="storage-sensor" type="submit" class="btn btn-info" onclick="newsensor();"> save Sensor </button>
+            <button id="storage-sensor" type="submit" class="btn btn-info" onclick="newsensor();"> set Sensor </button>
           </div>
         </div>
         <h2>Transactions</h2>
@@ -131,7 +127,7 @@
     crossorigin="anonymous"></script>
   <script src="dashboard.js"></script>
 
-  <script type="text/javascript" src="lagerABI.js"></script>
+  <script type="text/javascript" src="storage_abi.js"></script>
   <script src="main.js"></script>
 </body>
 
