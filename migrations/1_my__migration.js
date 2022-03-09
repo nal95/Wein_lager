@@ -4,7 +4,7 @@ const Storages = artifacts.require("Storages");
 module.exports = async function (deployer) {
   // deploy one ERC20Token contract
   console.log('try to deploy the NFT token contract Bottles');
-  await deployer.deploy(Bottles ,"WTokens","TWS");
+  await deployer.deploy(Bottles ,"TWINE","TWE");
   const bottles = await Bottles.deployed();
   console.log('\n > Bottles deployment succes -->' , Bottles.address);
 
