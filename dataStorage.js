@@ -22,7 +22,7 @@ async function toStoreData() {
     const res = await fetch(hashlink);
     const s = await res.text();
     const hash = await CryptoJS.SHA256(s)
-    const a = await contractLager.methods
+    await contractLager.methods
       .dataStorage(lagerId, sensorId, hash.toString())
       .send({ from: accounts[0]});
   } else {
@@ -32,7 +32,7 @@ async function toStoreData() {
 async function toVerifyData() {
   let lagerId = document.getElementById("lagerId").value;
   let sensorId = document.getElementById("sensorId").value;
-  document.querySelector("#date").disabled = true;
+  document.querySelector("#lagerId").disabled = true;
   document.querySelector("#sensorId").disabled = true;
   if (lagerId != "" && sensorId != "") {
     web3 = await new Web3(window.ethereum);
@@ -50,6 +50,7 @@ async function toVerifyData() {
 async function getHash() {
   const query = new Moralis.Query("storagings");
   const findResult = await query.find();
+  console.log(findResult)
 
   let table = `
       <h5>Current data that are stored</h5>
@@ -80,12 +81,11 @@ async function getHash() {
       let Data = e.attributes;
       let content = `
             <tr>
-              <td>${Data.date.toString().substr(0, 21)}</td>
+              <td>${Date(Data.time).toString().substr(0, 21)}</td>
               <td>${Data.dataHash}</td>
               <td>${Data.storageId}</td>
               <td>${Data.sensorId}</td>
               <td><a href='https://mumbai.polygonscan.com/tx/${Data.transaction_hash}' target="_blank" rel="noopener noreferrer"> Thx </a></td>
-              <td>${Data.confirmed}</td>
             </tr>
         `;
       theAttributes.innerHTML += content;

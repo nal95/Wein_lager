@@ -54,7 +54,7 @@ async function checkout() {
 }
 
 async function getBottles() {
-  const query = new Moralis.Query("checkings");
+  const query = new Moralis.Query("checking");
   const findResult = await query.find();
 
   let tableIn = `
@@ -99,6 +99,8 @@ async function getBottles() {
   } else {
     let content = `
           <tr>
+            <td>NULL</td>
+            <td>NULL</td>
             <td>NULL</td>
             <td>NULL</td>
             <td>NULL</td>
