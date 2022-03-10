@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Weinlager Check in/out Component</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+
+</head>
+
+
+<body>
+    <div class="container">
+        <h2>Wine Serial Nummer to Store in Lager</h2>
+        <form action="">
+            <div class="input-group mb-3">
+                <input id="lagerId-input" type="text" class="form-control" placeholder="lager ID please"
+                    aria-label="URL" aria-describedby="basic-addon1" required="required">
+                <select id="name" type="file" class="form-control" placeholder="NFT Name">
+                    <option value="An den Achtmorgen">An den Achtmorgen</option>
+                    <option value="Chardonnay 500">Chardonnay 500</option>
+                    <option value="Forster Riesling U500">Forster Riesling U500</option>
+                    <option value="Gutenberg">Gutenberg</option>
+                    <option value="Marmar">Marmar</option>
+                    <option value="Oelberg">Oelberg</option>
+                    <option value="Ozyetra">Ozyetra</option>
+                    <option value="Cuvé_Privé(1995)">Cuvé_Privé(1995)</option>
+                    <option value="Sauvignon Blanc 500">Sauvignon Blanc 500</option>
+                    <option value="Weißer Burgunder 500">Weißer Burgunder 500</option>
+                </select>
+                <input id="Uid-input" type="text" class="form-control" placeholder="Uid please" aria-label="URL"
+                    aria-describedby="basic-addon1" required="required">
+            </div>
+        </form>
+        <div>
+            <button id="btn-storage" type="submit" class="btn btn-primary" onclick="checkin();"> checkin </button>
+            <button id="btn-logout" type="submit" class="btn btn-danger float-end " onclick="checkout();">
+                checkout</button>
+        </div>
+        <hr>
+        <div>
+            <button id="in" class="btn btn-link" type="submit" ;">checkin list</button>
+            <button id="out" class="btn btn-link float-end" type="submit" ;">checkout
+                list</button>
+        </div>
+
+        <hr>
+        <div id="tableOfNFTs">
+
+        </div>
+
+        <div id="content">
+
+        </div>
+
+        <div id="tableOfCheckIn" class="column">
+        </div>
+        <div id="tableOfCheckOut" class="column">
+        </div>
+        <hr>
+    </div>
+
+    <!-- Mumbai WineNfts smart contract abi -->
+    <script type="text/javascript" src="storage_abi.js"></script>
+    <script src="storage.js"></script>
+</body>
+</body>
+
+</html>

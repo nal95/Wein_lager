@@ -118,25 +118,21 @@ toStorageBottle = async () => {
   window.location.href = "storage.html";
 };
 
-async function setStorage() {
-  web3 = await Moralis.Web3.enable();
+async function newlager(){
+  web3 = await new Web3(window.ethereum);
   let lagerid = document.getElementById("lagerId-input").value;
   document.querySelector("#lagerId-input").disabled = true;
-  document.querySelector("#location-input").disabled = true;
-  //web3.eth.accounts.wallet.add("a2c6fba310e9a8da2d74ee9bb1681efc69c34b173821f058c7c8da3703b71843");
-  if (lagerid != "" && location != "") {
+  if (lagerid != "") {
     const accounts = await web3.eth.getAccounts();
     const contractLager = new web3.eth.Contract(s_ABI, contract_lager);
-    const a = contractLager.methods
-      .setLager(lagerid, location)
-      .send({ from: accounts[0], Value: 0 });
-    console.log("ok: lagerid:", lagerid, "location:", location);
-    console.log(a);
+    await contractLager.methods
+      .setStorage(lagerid)
+      .send({ from: accounts[0]});
   } else {
     alert("please give the information - please update the page");
-  }
-  document.querySelector("#lagerId-input").disabled = false;
-  document.querySelector("#lagerId-input").value = "";
+  }  
+
+  window.location.reload(true);
 }
 
 async function newsensor() {
@@ -144,19 +140,18 @@ async function newsensor() {
   let sensorId = document.getElementById("sensorId-input").value;
   document.querySelector("#lager-input").disabled = true;
   document.querySelector("#sensorId-input").disabled = true;
-  web3 = await Moralis.Web3.enable();
   if (lagerID != "" && sensorId != "") {
+    web3 = await new Web3(window.ethereum);
     const accounts = await web3.eth.getAccounts();
     const contractLager = new web3.eth.Contract(s_ABI, contract_lager);
     const a = await contractLager.methods
       .sensorRegistration(lagerID, sensorId)
-      .send({ from: accounts[0], Value: 0 });
-    console.log(a);
+      .send({ from: accounts[0]});
   } else {
     alert("please give the information - please update the page");
   }
-  document.querySelector("#lager-input").disabled = false;
-  document.querySelector("#sensorId-input").disabled = false;
+
+  window.location.reload(true);
 }
 
 if (document.querySelector("#btn-login") != null) {
