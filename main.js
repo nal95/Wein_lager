@@ -13,7 +13,7 @@ if (Moralis.User.current() == null && window.location.href != homepage) {
 
 let web3;
 
-const contract_lager = "0x6fa822903F82a5DE2d803a2b13C8fe13459AcB1f"; 
+const contract_lager = "0xe0d6Dcd7D7e81C890f62D6887F8Bc4EFA17e1Ea9"; 
 const optionsLager = { chain: "mumbai", address: contract_lager };
 const options = {chain: "mumbai", address: "0x01FC3Ab2404a3cE87066B329C6A15590D21a2EDA",};
 

@@ -1,0 +1,12 @@
+div#tableOfNFTs{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 85%;
+    align-items: center;
+}
+div.nft img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #eee;
+}

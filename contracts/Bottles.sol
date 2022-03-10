@@ -1,17 +1,22 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.1;
+pragma solidity >=0.6.0 <0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+
 
 contract Bottles is ERC721, Ownable {
     mapping (string => mapping(string => uint256)) public id ; // to store Uid from string oder bytes32 in uint256
     mapping(uint256 => string) _tokenURIs; // to store nfts uri (which for us also corresponds to the Uid)
     mapping(string => mapping(string => bool)) public bottle;
     uint256 counter = 1; // for itterate nfts minting and counts the total number of tokens
+    //string  name ;
+    //string  symbol;
 
 
-    constructor(string memory name, string memory symbol) ERC721(name, symbol){
+    constructor (string memory name, string memory symbol) ERC721(name, symbol) public{
+        //name = _name;
+        //symbol = _symbol;
     }
 
     event action(uint256 tokenId, string wineName, string bottleUid);
@@ -46,10 +51,6 @@ contract Bottles is ERC721, Ownable {
         bottle[wineName][bottleUid] = true;
         counter ++;
         emit action(id[wineName][bottleUid], wineName, bottleUid); 
-    }
-    
-    function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal {
-        _tokenURIs[tokenId] = _tokenURI;
     }
 
     function existence(string memory wineName, string memory bottleUid) public virtual returns(bool){
