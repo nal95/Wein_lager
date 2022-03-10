@@ -67,7 +67,6 @@ contract Storages is Ownable {
         bottles memory switcher = storageContent[storageId][upwards - 1];
         storageContent[storageId][descendant] = switcher;
 
-        emit changing (block.timestamp, storageId, switcher.name, switcher.uid, "Position");
     }
 
     function checkBottleOut(uint256 storageId, string memory wineName, string memory bottleUid) 
@@ -107,14 +106,14 @@ contract Storages is Ownable {
         return storageSensorList[storageId];
     }
 
-    function dataStorage(uint256 storageId, uint256 sensorId, string memory dataHash, uint256 date) 
+    function dataStorage(uint256 storageId, uint256 sensorId, string memory dataHash) 
     public 
     {
         require (storageFacility[storageId] == true, "Storage: this storage don't already exist");
         require(isStorage[storageId][sensorId] == true, "Storage: the sensor don't already exist in this storage");
         require(bytes(dataHash).length == 64, "Sensor: please enter a sha256hash string");
-        require((block.timestamp - date) > 0 &&  (block.timestamp - date)  <= 86400, "Sensor: storage periode muss be smaller than 2 Days");
 
+        uint256 date = block.timestamp;
         sensorData[storageId][sensorId].push(data(dataHash,date));
         emit hashStorage(date, dataHash, storageId, sensorId);
     }

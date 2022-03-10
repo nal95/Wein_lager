@@ -42,29 +42,16 @@
             <div class="py-5 text-center">
                 <img class="d-block mx-auto mb-4" src="storage.jfif" alt="" width="200" height="250">
                 <h2>let us save some data</h2>
-                <p class="lead">please enter the SAH256 of the data to be saved.</br>
-                    if you need to hash the json file of the sensor data you can do it here:</br>
-                    <a href="https://emn178.github.io/online-tools/sha256.html" target="_blank" rel="noopener noreferrer"> link </a> </br>
-                    but if you just want to verify, enter the required data
                 </p>
-                </p>
-
             </div>
 
             <hr>
             <div class="mb-3">
                 <div class="form-group">
                     <div class="input-group mb-3">
-                        <input id="date" type="text" class="form-control" placeholder="Date JJJJ-MM-DD"
-                            aria-label="URL" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input id="hash" type="text" class="form-control"
-                            placeholder="SAH256-Hash or link for sensor data" aria-label="URL"
+                        <input id="lagerId" type="text" class="form-control" placeholder="lager id" aria-label="URL"
                             aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input id="sensorid" type="text" class="form-control" placeholder="sensor id" aria-label="URL"
+                        <input id="sensorId" type="text" class="form-control" placeholder="sensor id" aria-label="URL"
                             aria-describedby="basic-addon1">
                     </div>
                     <div>
@@ -87,7 +74,7 @@
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <!-- Mumbai WineNfts smart contract abi -->
-    <script type="text/javascript" src="lagerABI.js"></script>
+    <script type="text/javascript" src="storage_abi.js"></script>
     <script src="dataStorage.js"></script>
 </body>
 

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.6.0 <0.8.0;
+pragma solidity ^0.8.1;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -14,7 +14,7 @@ contract Bottles is ERC721, Ownable {
     //string  symbol;
 
 
-    constructor (string memory name, string memory symbol) ERC721(name, symbol) public{
+    constructor (string memory name, string memory symbol) ERC721(name, symbol){
         //name = _name;
         //symbol = _symbol;
     }
@@ -52,7 +52,10 @@ contract Bottles is ERC721, Ownable {
         counter ++;
         emit action(id[wineName][bottleUid], wineName, bottleUid); 
     }
-
+    function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal {
+        _tokenURIs[tokenId] = _tokenURI;
+    }
+    
     function existence(string memory wineName, string memory bottleUid) public virtual returns(bool){
         return bottle[wineName][bottleUid];
 

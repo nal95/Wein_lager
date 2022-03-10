@@ -13,7 +13,7 @@ if (Moralis.User.current() == null && window.location.href != homepage) {
 
 let web3;
 
-const contract_lager = "0xe0d6Dcd7D7e81C890f62D6887F8Bc4EFA17e1Ea9"; 
+const contract_lager = "0xD2BeA86149fFfc03DBB9C7a50fa0929d3203A4b7"; 
 const optionsLager = { chain: "mumbai", address: contract_lager };
 const options = {chain: "mumbai", address: "0x01FC3Ab2404a3cE87066B329C6A15590D21a2EDA",};
 
@@ -40,27 +40,6 @@ balance = async () => {
   const mumbaiBalance = await Moralis.Web3API.account.getNativeBalance(options);
   document.getElementById("balance").innerHTML =
     (mumbaiBalance.balance / 1e18).toFixed(5) + " MATIC";
-  // hash function start
- /* web3 = await Moralis.Web3.enable();
-  const contractLager = new web3.eth.Contract(LagerAbi, contract_lager);
-  console.log(contractLager);
-  let url = "https://true.wine/storage/sensors/3/values.json";
-  const res = await fetch(url);
-  //const values = await res.arrayBuffer();
-  //const Mydata = await values.values;
-  console.log(res);   
-  /*setInterval(async function () {
-    let url = "https://true.wine/storage/sensors/3/values.json";
-    try {
-      const res = await fetch(url);
-      const myJson = await res.text();
-      // console.log(myJson);
-      const hash = await CryptoJS.SHA256(myJson);
-      console.log(hash.toString());
-    } catch (error) {
-      console.log(error);
-    }
-  }, 3000);*/
 };
 balance();
 
@@ -172,6 +151,3 @@ if (document.querySelector("#upload")) {
   document.querySelector("#upload").onclick = upload;
 }
 
-//get-transactions-link
-//get-balances-link
-//get-nfts-link

@@ -6,9 +6,9 @@ Moralis.start({
 
 let web3  
   
-  const contract_nft = "0xf25E6ecdab9332cB427CB88cA2E92f6a89341a32"; //NFT Minting Contract Use This One "Batteries Included", code of this contract is in the github repository under contract_base for your reference.
+  const contract_nft = "0xb64C8A64B5Bbc900c5067BE270AB47a9f279D65D"; //NFT Minting Contract Use This One "Batteries Included", code of this contract is in the github repository under contract_base for your reference.
   const option = { chain: "mumbai", address: contract_nft };
-  const options = { chain: "mumbai", address: "0x01FC3Ab2404a3cE87066B329C6A15590D21a2EDA", token_address: "0xf25E6ecdab9332cB427CB88cA2E92f6a89341a32" };
+  const options = { chain: "mumbai", address: "0x01FC3Ab2404a3cE87066B329C6A15590D21a2EDA", token_address: "0xb64C8A64B5Bbc900c5067BE270AB47a9f279D65D" };
 
 
   
@@ -27,7 +27,7 @@ let web3
       const imageFile = new Moralis.File(data.name, data)
       await imageFile.saveIPFS();
       const bildLink = await imageFile.ipfs();
-      //console.log(bildLink)
+
       const metadata = {
         name: wine,
         date: Date(),
@@ -39,11 +39,7 @@ let web3
       });
       await metadataFile.saveIPFS();
       const metadataURI = await metadataFile.ipfs();
-      //const Url = '/ipfs/' + metadataFile.hash()
 
-      //console.log(Url , wine, SN, metadataURI)
-      //Chardonnay 500 0423634A2F7080 https://ipfs.moralis.io:2053/ipfs/QmSGECLQ3bUPYCiwiemtiAVBkDwf6UfGMGYdgBCBNigEfJ
-  
       await contract.methods
         .mintBottle(wine, SN, metadataURI)
         .send({ from: accounts[0]}).on("receipt", function(r){
@@ -78,60 +74,6 @@ let web3
           theTransactions.innerHTML += content;
         });
     });
-
-  
-   /* let table = `
-      <table class="table table-striped cell-border" style="width:100%">
-      <thead>
-          <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Name</th>
-              <th scope="col">Uid</th>
-          </tr>
-      </thead>
-      <tbody id="theTransactions">
-      </tbody>
-      </table>
-      `;
-    $(document).ready(function () {
-      $("table").DataTable({
-        searching: false,
-        ordering: false,
-      });
-    });
-  
-    document.querySelector("#tableOfNFTs").innerHTML = table;
-    if (get.length > 0) {
-      await get.forEach((n) => {
-        //console.log(JSON.parse(n.metadata));
-        let metadata = n.Uri;
-        fetch(metadata)
-          .then((response) => response.json())
-          .then((data) => {
-            let content = `
-          <tr>
-              <td class="card-title" style="font-family:verdana">${data.date
-                .toString()
-                .substr(0, 25)}</td>
-              <td class="card-title" style="font-family:verdana">${data.name}</td>
-              <td class="card-title" style="font-family:verdana">${
-                data.serialnummer
-              } </td>
-          </tr>
-          `;
-            theTransactions.innerHTML += content;
-          });
-      });
-    } else {
-      let content = `
-            <tr>
-              <td>NULL</td>
-              <td>NULL</td>
-              <td>NULL</td>
-            </tr>
-        `;
-      theTransactions.innerHTML += content;
-    }*/
   };
   
   getNFTs();
