@@ -6,7 +6,7 @@ Moralis.start({
 
 let web3;
 
-const contract_lager = "0xD2BeA86149fFfc03DBB9C7a50fa0929d3203A4b7";
+const contract_lager = "0x487bdc5f7ED73f08e319040aB0470e1Db10f2E5C";
 const optionsLager = { chain: "mumbai", address: contract_lager };
 
 async function checkin() {
@@ -54,7 +54,7 @@ async function checkout() {
 }
 
 async function getBottles() {
-  const query = new Moralis.Query("checking");
+  const query = new Moralis.Query("Checkings");
   const findResult = await query.find();
 
   let tableIn = `

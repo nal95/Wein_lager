@@ -6,9 +6,9 @@ Moralis.start({
 
 let web3  
   
-  const contract_nft = "0xb64C8A64B5Bbc900c5067BE270AB47a9f279D65D"; //NFT Minting Contract Use This One "Batteries Included", code of this contract is in the github repository under contract_base for your reference.
+  const contract_nft = "0xd91b94b1841688a14ECCaCF2D36Fb0cEC3A8609E"; //NFT Minting Contract Use This One "Batteries Included", code of this contract is in the github repository under contract_base for your reference.
   const option = { chain: "mumbai", address: contract_nft };
-  const options = { chain: "mumbai", address: "0x01FC3Ab2404a3cE87066B329C6A15590D21a2EDA", token_address: "0xb64C8A64B5Bbc900c5067BE270AB47a9f279D65D" };
+  const options = { chain: "mumbai", address: "0x01FC3Ab2404a3cE87066B329C6A15590D21a2EDA", token_address: "0xd91b94b1841688a14ECCaCF2D36Fb0cEC3A8609E" };
 
 
   
@@ -46,7 +46,7 @@ let web3
           setTimeout(function(){
             alert("nft was successfully minted")
             window.location.reload(true);
-          },60000);
+          },10000);
         });
     } else {
       alert("please give the required information");

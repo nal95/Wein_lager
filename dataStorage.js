@@ -6,7 +6,7 @@ Moralis.start({
 
 let web3;
 
-const contract_lager = "0xD2BeA86149fFfc03DBB9C7a50fa0929d3203A4b7"; 
+const contract_lager = "0x487bdc5f7ED73f08e319040aB0470e1Db10f2E5C"; 
 const optionsLager = { chain: "mumbai", address: contract_lager };
 let hashlink = "http://localhost:8000/storage/sensors/datas";
 
@@ -21,10 +21,16 @@ async function toStoreData() {
     const accounts = await web3.eth.getAccounts();
     const res = await fetch(hashlink);
     const s = await res.text();
+    console.log(s)
     const hash = await CryptoJS.SHA256(s)
     await contractLager.methods
       .dataStorage(lagerId, sensorId, hash.toString())
-      .send({ from: accounts[0]});
+      .send({ from: accounts[0]}).on("receipt", function(r){
+        setTimeout(function(){
+          alert("data was successfully saved")
+          window.location.reload(true);
+        },10000);
+      });
   } else {
     alert("please give the information - please update the page");
   }
@@ -48,7 +54,7 @@ async function toVerifyData() {
 }
 
 async function getHash() {
-  const query = new Moralis.Query("storagings");
+  const query = new Moralis.Query("Storings");
   const findResult = await query.find();
   console.log(findResult)
 
